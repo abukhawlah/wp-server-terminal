@@ -1,0 +1,477 @@
+/**
+ * WP Server Terminal — Admin Styles
+ *
+ * Sections:
+ *   1. General / Layout
+ *   2. Terminal
+ *   3. File Manager
+ *   4. Database Manager
+ *   5. Audit Log
+ *   6. Re-auth Modal / Form
+ *   7. HTTPS Warning
+ *   8. Responsive
+ */
+
+/* ==========================================================================
+   1. General / Layout
+   ========================================================================== */
+
+.wst-wrap {
+    padding: 20px 0;
+    max-width: 100%;
+}
+
+.wst-wrap h1 {
+    margin-bottom: 16px;
+}
+
+.wst-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: #f0f0f1;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+}
+
+.wst-cwd-label {
+    font-weight: 600;
+    color: #3c434a;
+}
+
+#wst-cwd {
+    font-family: monospace;
+    color: #1d2327;
+    background: #fff;
+    padding: 2px 8px;
+    border: 1px solid #c3c4c7;
+    border-radius: 3px;
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   2. Terminal
+   ========================================================================== */
+
+#wst-terminal-container {
+    background: #1e1e1e;
+    border-radius: 4px;
+    padding: 8px;
+    min-height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+#wst-status-bar {
+    background: #2d2d2d;
+    color: #cccccc;
+    font-size: 12px;
+    font-family: monospace;
+    padding: 4px 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wst-status-authed {
+    color: #4caf50;
+}
+
+.wst-status-expired {
+    color: #f44336;
+}
+
+#wst-wpcli-toggle.active {
+    background: #2271b1;
+    color: #fff;
+    border-color: #2271b1;
+}
+
+/* ==========================================================================
+   3. File Manager
+   ========================================================================== */
+
+.wst-fm-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #f0f0f1;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+}
+
+#wst-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+#wst-breadcrumb span {
+    color: #2271b1;
+    cursor: pointer;
+}
+
+#wst-breadcrumb span:hover {
+    text-decoration: underline;
+}
+
+#wst-breadcrumb span:last-child {
+    color: #3c434a;
+    cursor: default;
+    text-decoration: none;
+}
+
+#wst-breadcrumb .sep {
+    color: #787c82;
+    margin: 0 2px;
+}
+
+.wst-fm-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#wst-file-list-container {
+    width: 100%;
+}
+
+#wst-file-list {
+    width: 100%;
+}
+
+#wst-file-list .file-icon {
+    margin-right: 6px;
+}
+
+.wst-fm-actions button {
+    /* inherits standard WP button styles */
+}
+
+/* Fixed-position code editor panel — overlays the admin content area */
+#wst-editor-panel {
+    position: fixed;
+    top: 32px;   /* clears the WP admin bar */
+    left: 160px; /* clears the WP sidebar */
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3);
+}
+
+.wst-editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: #1d2327;
+    color: #fff;
+    border-bottom: 1px solid #3c434a;
+}
+
+#wst-editor-filename {
+    font-family: monospace;
+    font-size: 13px;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #e0e0e0;
+}
+
+#wst-codemirror-container {
+    flex: 1;
+    overflow: auto;
+    height: 100%;
+}
+
+/* Ensure CodeMirror 6 fills the container */
+.cm-editor {
+    height: 100% !important;
+}
+
+/* Drag-and-drop upload zone */
+.wst-drop-zone {
+    border: 2px dashed #c3c4c7;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    color: #787c82;
+    font-size: 14px;
+    margin-top: 12px;
+    transition: border-color 0.2s;
+}
+
+.wst-drop-zone.dragover {
+    border-color: #2271b1;
+    background: #f0f6fc;
+    color: #2271b1;
+}
+
+/* ==========================================================================
+   4. Database Manager
+   ========================================================================== */
+
+.wst-db-layout {
+    display: flex;
+    gap: 16px;
+    min-height: 600px;
+}
+
+/* Table-list sidebar */
+#wst-table-list-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    background: #f6f7f7;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 8px;
+    overflow-y: auto;
+}
+
+#wst-table-list-sidebar h3 {
+    margin: 0 0 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #787c82;
+    letter-spacing: 0.05em;
+}
+
+#wst-table-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#wst-table-list li {
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#wst-table-list li:hover {
+    background: #e2e4e7;
+}
+
+#wst-table-list li.active {
+    background: #2271b1;
+    color: #fff;
+}
+
+/* Main content area */
+.wst-db-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+#wst-sql-editor-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#wst-sql-editor {
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    min-height: 200px;
+    font-family: monospace;
+}
+
+.wst-db-toolbar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#wst-sql-results {
+    flex: 1;
+    overflow: auto;
+}
+
+#wst-sql-meta {
+    font-size: 12px;
+    color: #787c82;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+/* Results table */
+.wst-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.wst-results-table th {
+    background: #f6f7f7;
+    padding: 6px 10px;
+    text-align: left;
+    border: 1px solid #c3c4c7;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.wst-results-table td {
+    padding: 5px 10px;
+    border: 1px solid #e2e4e7;
+    font-family: monospace;
+    font-size: 12px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wst-results-table tr:hover td {
+    background: #f6f7f7;
+}
+
+/* SQL error notice */
+#wst-sql-error {
+    color: #d63638;
+    background: #fcf0f1;
+    border: 1px solid #d63638;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+/* ==========================================================================
+   5. Audit Log
+   ========================================================================== */
+
+.wst-severity-info {
+    color: #787c82;
+}
+
+.wst-severity-warning {
+    color: #dba617;
+    font-weight: 600;
+}
+
+.wst-severity-critical {
+    color: #d63638;
+    font-weight: 600;
+}
+
+.wst-status-success {
+    color: #00a32a;
+}
+
+.wst-status-failure {
+    color: #d63638;
+}
+
+/* ==========================================================================
+   6. Re-auth Modal / Form
+   ========================================================================== */
+
+.wst-reauth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wst-reauth-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 32px;
+    min-width: 360px;
+    max-width: 480px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.wst-reauth-box h2 {
+    margin: 0 0 16px;
+    font-size: 18px;
+    color: #1d2327;
+}
+
+.wst-reauth-box .description {
+    color: #787c82;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.wst-reauth-box input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.wst-reauth-box .button-primary {
+    width: 100%;
+}
+
+.wst-reauth-error {
+    color: #d63638;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* ==========================================================================
+   7. HTTPS Warning
+   ========================================================================== */
+
+.wst-https-warning {
+    background: #fcf0f1;
+    border-left: 4px solid #d63638;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   8. Responsive
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* Database manager stacks vertically on smaller screens */
+    .wst-db-layout {
+        flex-direction: column;
+    }
+
+    #wst-table-list-sidebar {
+        width: 100%;
+    }
+
+    /* Editor panel expands to full width when the WP sidebar collapses */
+    #wst-editor-panel {
+        left: 0;
+    }
+}

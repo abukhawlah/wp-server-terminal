@@ -1,0 +1,19 @@
+# Backups created by file manager
+*.wst-backup
+.wst-trash/
+.wst-backups/
+
+# WordPress
+wp-config.php
+
+# macOS
+.DS_Store
+__MACOSX/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OMC state
+.omc/
